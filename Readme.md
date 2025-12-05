@@ -48,21 +48,22 @@ Production-ready **Phase 1** object-oriented core model for the Global Beverage 
 
 
 ## 📁 Project Structure
-​
-gbce-trading-system/
-├── pyproject.toml      # Hatchling build config
-├── README.md          # This file
-└── gbce/              # Main package
-    ├── __init__.py    # Exports: GlobalBeverageCorpExchange
-    ├── __main__.py    # python -m gbce entrypoint
-    ├── models/        # Data models
-    │   ├── enums.py   # TradeIndicator (BUY/SELL)
-    │   └── trade.py   # Immutable Trade dataclass
-    ├── stocks/        # Stock implementations
-    │   ├── base.py    # Stock(ABC)
-    │   ├── common.py  # CommonStock
-    │   └── preferred.py # PreferredStock
-    └── exchange.py    # GlobalBeverageCorpExchange
+gbce-core/ # ← Run pip install -e . HERE
+├── pyproject.toml # Hatchling build config (packages = ["gbce"])
+├── README.md # This file
+└── gbce/ # ← MAIN PACKAGE (python -m gbce)
+├── __init__.py # Exports: GlobalBeverageCorpExchange
+├── __main__.py # python -m gbce entrypoint
+├── models/ # Data models
+│ ├── init.py
+│ ├── enums.py # TradeIndicator (BUY/SELL)
+│ └── trade.py # Immutable Trade dataclass
+├── stocks/ # Stock implementations
+│ ├── init.py
+│ ├── base.py # Stock(ABC)
+│ ├── common.py # CommonStock
+│ └── preferred.py # PreferredStock
+└── exchange.py # GlobalBeverageCorpExchange
 
 
 💻 Usage Examples
@@ -95,18 +96,16 @@ logging (built-in)
 
 # Development Setup
 `
-## Clone
-
 # Clone and install
-* - git clone https://github.com/AnkitaPurwar/gbce-core.git
-* - cd gbce-core
+ - git clone https://github.com/AnkitaPurwar/gbce-core.git
+ - cd gbce-core
 
 # Install dev tools
-* pip install -e .
-* python -m gbce
+ - pip install -e .
+ - python -m gbce
 
 or 
-* pip install -e . && python -m gbce 
+ - pip install -e . && python -m gbce 
 
 
 

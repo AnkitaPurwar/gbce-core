@@ -25,9 +25,9 @@ Production-ready **Phase 1** object-oriented core model for the Global Beverage 
 ## 🛠 Quick Start
 
 Clone and install
-git clone <repo>
-cd stock_exchange_market_assignment
-* requires python>3.8
+* - git clone https://github.com/AnkitaPurwar/gbce-core.git
+* - cd gbce-core
+* - requires python>3.8
 
 
 ## Usage

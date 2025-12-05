@@ -49,7 +49,7 @@ Production-ready **Phase 1** object-oriented core model for the Global Beverage 
 
 ## 📁 Project Structure
 gbce-core/ # ← Run pip install -e . HERE
-├── pyproject.toml # Hatchling build config (packages = ["gbce"])
+`├── pyproject.toml # Hatchling build config (packages = ["gbce"])
 ├── README.md # This file
 └── gbce/ # ← MAIN PACKAGE (python -m gbce)
 ├── __init__.py # Exports: GlobalBeverageCorpExchange
@@ -63,7 +63,7 @@ gbce-core/ # ← Run pip install -e . HERE
 │ ├── base.py # Stock(ABC)
 │ ├── common.py # CommonStock
 │ └── preferred.py # PreferredStock
-└── exchange.py # GlobalBeverageCorpExchange
+└── exchange.py # GlobalBeverageCorpExchange`
 
 
 💻 Usage Examples

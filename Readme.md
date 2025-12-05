@@ -22,16 +22,6 @@ Production-ready **Phase 1** object-oriented core model for the Global Beverage 
 | GIN    | Preferred | $0.08 (8¢)    | 2%             | $100.00   |
 | JOE    | Common    | $0.13 (13¢)   | -              | $250.00   |
 
-## 🛠 Quick Start
-
-Clone and install
-* - git clone https://github.com/AnkitaPurwar/gbce-core.git
-* - cd gbce-core
-* - requires python>3.8
-
-
-## Usage
-python stock_market.py
 
 
 
@@ -55,3 +45,74 @@ python stock_market.py
 **VWSP**: `Σ(Quantity × Price) ÷ Σ(Quantity)` (past 5 minutes)
 
 **GBCE Index**: `exp(Σ(ln(VWSP)) ÷ n)` - Geometric mean
+
+
+## 📁 Project Structure
+​
+gbce-trading-system/
+├── pyproject.toml      # Hatchling build config
+├── README.md          # This file
+└── gbce/              # Main package
+    ├── __init__.py    # Exports: GlobalBeverageCorpExchange
+    ├── __main__.py    # python -m gbce entrypoint
+    ├── models/        # Data models
+    │   ├── enums.py   # TradeIndicator (BUY/SELL)
+    │   └── trade.py   # Immutable Trade dataclass
+    ├── stocks/        # Stock implementations
+    │   ├── base.py    # Stock(ABC)
+    │   ├── common.py  # CommonStock
+    │   └── preferred.py # PreferredStock
+    └── exchange.py    # GlobalBeverageCorpExchange
+
+
+💻 Usage Examples
+
+## Basic Operations
+
+from gbce import GlobalBeverageCorpExchange
+from gbce.models.enums import TradeIndicator
+
+exchange = GlobalBeverageCorpExchange()
+
+# Create stocks (pennies)
+tea = exchange.create_common_stock("TEA", 0, 10000)  # $100 par
+
+# Calculations ($100 = 10000 pennies)
+print(f"Dividend Yield: {tea.dividend_yield(10000)}%")  # 0.00%
+print(f"P/E Ratio: {tea.pe_ratio(10000)}")              # None
+
+# Record trade
+tea.record_trade(1000, TradeIndicator.BUY, 9550)  # $95.50
+
+print(f"VWSP: ${tea.volume_weighted_stock_price()}")     # $95.50
+print(f"GBCE: ${exchange.gbce_all_share_index()}")       # None (no VWSPs)
+
+# Requirements
+
+Python >= 3.8 (stdlib only - no external deps)
+decimal (built-in)
+logging (built-in)
+
+# Development Setup
+`
+## Clone
+
+# Clone and install
+* - git clone https://github.com/AnkitaPurwar/gbce-core.git
+* - cd gbce-core
+
+# Install dev tools
+* pip install -e .
+* python -m gbce
+
+or 
+* pip install -e . && python -m gbce 
+
+
+
+## 🔧 Troubleshooting
+
+| ❌ Error | ✅ Solution |
+|----------|-------------|
+| `pip install -e .` fails | `packages = ["gbce"]` in `pyproject.toml` |
+
